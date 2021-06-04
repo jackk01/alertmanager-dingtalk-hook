@@ -12,7 +12,7 @@ import (
 
 func Send(notification model.Notification) (err error) {
 	markdown, webhook, err := transformToMarkdown(notification)
-	if err != nil {
+	if err != nil || webhook == "" {
 		return
 	}
 
