@@ -13,7 +13,7 @@ docker image prune -f
 
 
 
-### Dingtalk CRD
+### deploy.yaml
 
 ```
 apiVersion: apps/v1
