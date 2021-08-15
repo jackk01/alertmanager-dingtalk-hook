@@ -20,7 +20,7 @@ func transformToMarkdown(notification model.Notification) (markdown *model.DingT
 		buffer.WriteString(fmt.Sprintf("##### %s\n > 故障描述: %s\n", annotations["summary"], annotations["description"]))
 		buffer.WriteString(fmt.Sprintf("\n> 故障等级：%s\n", alert.Labels["severity"]))
 		buffer.WriteString(fmt.Sprintf("\n> 当前状态：%s\n", alert.Status))
-		buffer.WriteString(fmt.Sprintf("\n> 开始时间：%s\n", alert.StartsAt.Format("2006-01-02 15:04:05")))
+		buffer.WriteString(fmt.Sprintf("\n> 开始时间：%s\n", alert.StartsAt.Local().Format("2006-01-02 15:04:05")))
 	}
 
 	markdown = &model.DingTalkMarkdown{
