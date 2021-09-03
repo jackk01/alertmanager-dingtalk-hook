@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dingtalk-hook
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: dingtalk-hook
+  template:
+    metadata:
+      labels:
+        app: dingtalk-hook
+    spec:
+      containers:
+        - name: dingtalk-hook
+          image: jackk02/dingtalk-hook:v1.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+              name: http
+          env:
+            - name: PROME_URL
+              value: prometheus-k8s:9090
+            - name: ROBOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: dingtalk-secret
+                  key: token
+            - name: ROBOT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: dingtalk-secret
+                  key: secret
+          resources:
+            requests:
+              cpu: 50m
+              memory: 100Mi
+            limits:
+              cpu: 50m
+              memory: 100Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dingtalk-hook
+  namespace: monitoring
+spec:
+  selector:
+    app: dingtalk-hook
+  ports:
+    - name: hook
+      port: 5000
+      targetPort: http
+  # type: NodePort
