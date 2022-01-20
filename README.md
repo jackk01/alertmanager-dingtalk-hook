@@ -2,6 +2,13 @@
 
 Webhook service support send Prometheus alert messages to Dingtalk.
 
+## Secret
+```
+kubectl create secret generic dingtalk-secret \
+--from-literal=token=<your_token> \
+--from-literal=secret=<your_secret> -n monitoring
+```
+
 ## Install
 ```
 kubectl apply -f deploy.yaml
