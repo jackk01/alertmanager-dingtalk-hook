@@ -12,8 +12,8 @@ func transformToMarkdown(notification model.Notification) (markdown *model.DingT
 	webhook = robotURL()
 	var buffer bytes.Buffer
 
-	buffer.WriteString(fmt.Sprintf("### [%s:%d]\n", strings.ToUpper(notification.Status), len(notification.Alerts)))
-	buffer.WriteString(fmt.Sprintf("---\n"))
+	buffer.WriteString(fmt.Sprintf("### [%s:%d]\n", strings.ToUpper("alerts"), len(notification.Alerts)))
+	buffer.WriteString("---\n")
 
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations
