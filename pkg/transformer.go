@@ -27,14 +27,14 @@ func transformToMarkdown(notification model.Notification) (markdown *model.DingT
 			annotations := alert.Annotations
 			buffer.WriteString(fmt.Sprintf("### <font color=\"#08d417\"> %s </font>\n", "恢复通知"))
 			buffer.WriteString(fmt.Sprintf("##### %s\n > 状态: %s\n", annotations["summary"], alert.Status))
-			buffer.WriteString(fmt.Sprintf("\n> 等级: %s\n", alert.Labels["severity"]))
+			buffer.WriteString(fmt.Sprintf("\n> 级别: %s\n", alert.Labels["severity"]))
 			buffer.WriteString(fmt.Sprintf("\n> 时间: %s\n", alert.StartsAt.Local().Format("2006-01-02 15:04:05")))
 			buffer.WriteString(fmt.Sprintf("\n> 详情: %s\n", annotations["description"]))
 		} else {
 			annotations := alert.Annotations
 			buffer.WriteString(fmt.Sprintf("### <font color=\"#FF0000\"> %s </font>\n", "告警通知"))
 			buffer.WriteString(fmt.Sprintf("##### %s\n > 状态: %s\n", annotations["summary"], alert.Status))
-			buffer.WriteString(fmt.Sprintf("\n> 等级: %s\n", alert.Labels["severity"]))
+			buffer.WriteString(fmt.Sprintf("\n> 级别: %s\n", alert.Labels["severity"]))
 			buffer.WriteString(fmt.Sprintf("\n> 时间: %s\n", alert.StartsAt.Local().Format("2006-01-02 15:04:05")))
 			buffer.WriteString(fmt.Sprintf("\n> 详情: %s\n", annotations["description"]))
 		}
